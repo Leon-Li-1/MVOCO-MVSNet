@@ -31,16 +31,16 @@ Our results on DTU and Tanks and Temples Dataset are listed in the tables.
 
 ### Qualitative Results on Intermediate Set
 <p align="center">
-  <img src="images/tnt_intermediate_visualization.png" width="900">
+  <img src="tnt_intermediate_visualization.png" width="900">
   <br>
-  <em>Figure 1: OCO-MVSNet+ reconstruction results on the Intermediate Set</em>
+  <em>Figure 1: OCO-MVSNet+ reconstruction results on the Intermediate Set of Tanks and Temples.</em>
 </p>
 
 ### Qualitative Results on Advanced Set
 <p align="center">
-  <img src="images/tnt_advanced_visualization.png" width="900">
+  <img src="tnt_advanced_visualization.png" width="900">
   <br>
-  <em>Figure 2: OCO-MVSNet+ reconstruction results on the Intermediate set of Tanks and Temples.</em>
+  <em>Figure 2: OCO-MVSNet+ reconstruction results on the Advanced set of Tanks and Temples.</em>
 </p>
 
 ## 👩‍ Acknowledgements
