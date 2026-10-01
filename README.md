@@ -93,7 +93,15 @@ tnt/
 
 ## 🚂 Training
 
-You can train **MVOCO-MVSNet** from scratch on the DTU and BlendedMVS datasets.
+> **⚠️ Checkpoint Selection for Reproducibility**
+>
+> During training, checkpoint selection should be based on a joint consideration of **absolute depth error (`abs_depth_err`)**, **reprojection error (`epe`)**, **2 mm error (`2mm_err`)**, **4 mm error (`4mm_err`)**, and **8 mm error (`8mm_err`)**. We do not recommend selecting a checkpoint based on any single metric alone.
+>
+> As a practical reference, for the **DTU dataset**, we generally select a checkpoint around **epoch 13**. For the **Tanks & Temples dataset**, we generally use the **last training epoch**.
+>
+> The exact optimal epoch may vary slightly with the training configuration and random seed.
+
+You can train **MVOCO-MVSNet and MVOCO-MVSNet+** from scratch on the DTU and BlendedMVS datasets.
 
 After training, the generated checkpoints and logs will be saved in the `checkpoints` directory. The main output files include:
 
