@@ -13,8 +13,8 @@ We propose **MVOCO (Multi-View Observation Consistency Optimization)**, a Bayesi
 Use the following commands to build the `conda` environment.
 
 ```bash
-conda create -n geomvsnet python=3.8
-conda activate geomvsnet
+conda create -n mvocomvsnet python=3.12
+conda activate mvocomvsnet
 pip install -r requirements.txt
 ```
 
