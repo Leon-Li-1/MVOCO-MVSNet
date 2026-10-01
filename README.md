@@ -1,11 +1,10 @@
-# MVOCO-MVSNet and MVOCO-MVSNet+
+# Explicit Modeling of Multi-View Observation Consistency for Supervised Multi-View Stereo
 
-Details are described in our paper:
-> Explicit Modeling of Multi-View Observation Consistency for Supervised Multi-View Stereo
->
-> Liangliang Li, Guihua Liu, Feng Xu
+**Liangliang Li, Guihua Liu, Feng Xu**
 
-Observation Consistency Optimization (OCO) framework is a novel supervision paradigm grounded in state estimation theory, which significantly enhances the model's semantic understanding of scenes by establishing bidirectional consistency constraints between image feature space and depth space. Additionally, to further strengthen the model's spatial perception capabilities, we designing a Differentiable Spatial Encoding (DSE) module.
+**MVOCO-MVSNet** and **MVOCO-MVSNet+**
+
+We propose **MVOCO (Multi-View Observation Consistency Optimization)**, a Bayesian framework for supervised Multi-View Stereo (MVS) based on the Maximum A Posteriori (MAP) principle. We further introduce **Differentiable Spatial Encoding (DSE)** to enhance spatial-aware feature representation for MVS. Based on these designs, we develop **MVOCO-MVSNet** and **MVOCO-MVSNet+**.
 
 ## 🔨 Setup
 
