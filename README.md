@@ -2,15 +2,17 @@
 
 **Liangliang Li, Guihua Liu, Feng Xu**
 
-**MVOCO-MVSNet** and **MVOCO-MVSNet+**
+**Official implementation of MVOCO-MVSNet and MVOCO-MVSNet+**
 
-We propose **MVOCO (Multi-View Observation Consistency Optimization)**, a Bayesian framework for supervised Multi-View Stereo (MVS) based on the Maximum A Posteriori (MAP) principle. We further introduce **Differentiable Spatial Encoding (DSE)** to enhance spatial-aware feature representation for MVS. Based on these designs, we develop **MVOCO-MVSNet** and **MVOCO-MVSNet+**.
+We propose **MVOCO (Multi-View Observation Consistency Optimization)**, a Bayesian framework for supervised Multi-View Stereo (MVS) based on the Maximum A Posteriori (MAP) principle. Furthermore, we introduce **Differentiable Spatial Encoding (DSE)** to enhance spatial-aware feature representation for MVS. Based on these designs, we develop **MVOCO-MVSNet** and **MVOCO-MVSNet+** for accurate and complete multi-view 3D reconstruction.
+
+---
 
 ## 🔨 Setup
 
 ### 1.1 Requirements
 
-Use the following commands to build the `conda` environment.
+Use the following commands to create the `conda` environment:
 
 ```bash
 conda create -n mvocomvsnet python=3.12
@@ -20,37 +22,40 @@ pip install -r requirements.txt
 
 ### 1.2 Datasets
 
-Download the following datasets and modify the corresponding local path in `scripts/data_path.sh`.
+Download the following datasets and modify the corresponding local paths in `scripts/data_path.sh`.
 
 #### DTU Dataset
 
-**Training data**. We use the same DTU training data as mentioned in MVSNet and CasMVSNet, please refer to [DTU training data](https://drive.google.com/file/d/1eDjh-_bxKKnEuz5h-HXS7EDJn59clx6V/view) and [Depth raw](https://virutalbuy-public.oss-cn-hangzhou.aliyuncs.com/share/cascade-stereo/CasMVSNet/dtu_data/dtu_train_hr/Depths_raw.zip) for data download. Optional, you should download the [Recitfied raw](http://roboimagedata2.compute.dtu.dk/data/MVS/Rectified.zip) if you want to train the model in raw image resolution. Unzip and organize them as:
+**Training data.** We use the same DTU training data as MVSNet and CasMVSNet. Please refer to the [DTU training data](https://drive.google.com/file/d/1eDjh-_bxKKnEuz5h-HXS7EDJn59clx6V/view).
 
-```
+After downloading, unzip and organize the dataset as follows:
+
+```text
 dtu/
 ├── Cameras
 ├── Depths
 ├── Depths_raw
-├── Rectified
-└── Rectified_raw (optional)
+└── Rectified
 ```
 
-**Testing data**. For convenience, we use the [DTU testing data](https://drive.google.com/file/d/1rX0EXlUL4prRxrRu2DgLJv2j7-tpUD4D/view?usp=sharing) processed by CVP-MVSNet. Also unzip and organize it as:
+**Testing data.** For convenience, we use the [DTU testing data](https://drive.google.com/file/d/1rX0EXlUL4prRxrRu2DgLJv2j7-tpUD4D/view?usp=sharing) processed by CVP-MVSNet.
 
-```
+After downloading, unzip and organize the dataset as follows:
+
+```text
 dtu-test/
 ├── Cameras
 ├── Depths
 └── Rectified
 ```
 
-> Please note that the images and lighting here are consistent with the original dataset. 
+> **Note:** The images and lighting conditions are consistent with those of the original DTU dataset.
 
 #### BlendedMVS Dataset
 
-Download the low image resolution version of [BlendedMVS dataset](https://drive.google.com/file/d/1ilxls-VJNvJnB7IaFj7P0ehMPr7ikRCb/view) and unzip it as:
+Download the low-resolution version of the [BlendedMVS dataset](https://drive.google.com/file/d/1ilxls-VJNvB7IaFj7P0ehMPr7ikRCb/view) and unzip it as follows:
 
-```
+```text
 blendedmvs/
 └── dataset_low_res
     ├── ...
@@ -59,9 +64,13 @@ blendedmvs/
 
 #### Tanks and Temples Dataset
 
-Download the intermediate and advanced subsets of [Tanks and Temples dataset](https://drive.google.com/file/d/1YArOJaX9WVLJh4757uE8AEREYkgszrCo/view) and unzip them. If you want to use the short range version of camera parameters for `Intermediate` subset, unzip `short_range_caemeras_for_mvsnet.zip` and move `cam_[]` to the corresponding scenarios.
+Download the Intermediate and Advanced subsets of the [Tanks and Temples dataset](https://drive.google.com/file/d/1YArOJaX9WVLJh4757uE8AEREYkgszrCo/view) and unzip them.
 
-```
+For the Intermediate subset, if you want to use the short-range version of the camera parameters, unzip `short_range_caemeras_for_mvsnet.zip` and move the corresponding `cam_[]` files to their respective scenarios.
+
+The expected directory structure is:
+
+```text
 tnt/
 ├── advanced
 │   ├── ...
@@ -80,139 +89,289 @@ tnt/
         └── Train.log
 ```
 
+---
 
 ## 🚂 Training
 
-You can train GeoMVSNet from scratch on DTU dataset and BlendedMVS dataset. After suitable setting and training, you can get the training checkpoints model in `checkpoints/[Dataset]/[THISNAME]`, and the following outputs lied in the folder:
-- `events.out.tfevents*`: you can use `tensorboard` to monitor the training process.
-- `model_[epoch].ckpt`: we save a checkpoint every `--save_freq`.
-- `train-[TIME].log`: logged the detailed training message, you can refer to appropiate indicators to judge the quality of training.
+You can train **MVOCO-MVSNet** from scratch on the DTU and BlendedMVS datasets.
+
+After training, the generated checkpoints and logs will be saved in the `checkpoints` directory. The main output files include:
+
+* `events.out.tfevents*`: TensorBoard logs for monitoring the training process.
+* `model_[epoch].ckpt`: Model checkpoints saved according to `--save_freq`.
+* `train-[TIME].log`: Detailed training logs for monitoring and evaluating the training process.
 
 ### 2.1 DTU
 
-To train GeoMVSNet on DTU dataset, you can refer to `scripts/dtu/train_dtu.sh`, specify `THISNAME`, `CUDA_VISIBLE_DEVICES`, `batch_size`, etc. to meet your demand. And run:
+To train **MVOCO-MVSNet** on the DTU dataset, refer to:
+
+```text
+scripts/dtu/train_dtu.sh
+scripts/dtu/train_dtu_plus.sh
+```
+
+Modify `THISNAME`, `batch_size`, and other parameters according to your requirements.
+
+Then run the corresponding script:
 
 ```bash
 bash scripts/dtu/train_dtu.sh
 ```
 
-The default training strategy we provide is the *distributed* training mode. If you want to use the *general* training mode, you can refer to the following code. 
-
-<details>
-<summary>general training script</summary>
+or
 
 ```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 train.py ${@} \
-    --which_dataset="dtu" --epochs=16 --logdir=$LOG_DIR \
-    --trainpath=$DTU_TRAIN_ROOT --testpath=$DTU_TRAIN_ROOT \
-    --trainlist="datasets/lists/dtu/train.txt" --testlist="datasets/lists/dtu/test.txt" \
-    \
-    --data_scale="mid" --n_views="5" --batch_size=16 --lr=0.025 --robust_train \
-    --lrepochs="1,3,5,7,9,11,13,15:1.5"
+bash scripts/dtu/train_dtu_plus.sh
 ```
 
-</details>
+You can configure the model parameters and other hyperparameters in `models/utils/opts` according to your specific requirements.
 
-> It should be noted that two different training strategies need to adjust the `batch_size` and `lr` parameters to achieve the best training results.
+Then, run the corresponding training script in the terminal:
 
+```bash
+python train.py
+```
+
+or
+
+```bash
+python train_reg.py
+```
+
+> **Note:** When the weight of the geometric observation term is below **3.0**, we recommend using `train_reg.py` to achieve better performance.
 
 ### 2.2 BlendedMVS
 
-To train GeoMVSNet on BlendedMVS dataset, you can refer to `scripts/bled/train_blend.sh`, and also specify `THISNAME`, `CUDA_VISIBLE_DEVICES`, `batch_size`, etc. to meet your demand. And run:
+To train **MVOCO-MVSNet** on the BlendedMVS dataset, refer to:
+
+```text
+scripts/blend/train_blend.sh
+```
+
+Modify `THISNAME`, `batch_size`, and other parameters according to your requirements.
+
+Then run:
 
 ```bash
 bash scripts/blend/train_blend.sh
 ```
 
-By default, we use `7` viewpoints as input for the BlendedMVS training. Similarly, you can choose to use the *distributed* training mode or the *general* one as mentioned in 2.1.
+By default, we use **9 viewpoints** as input during BlendedMVS training.
+
+Similarly, you can configure the model parameters and other hyperparameters in `models/utils/opts` according to your specific requirements.
+
+Then, run:
+
+```bash
+python train.py
+```
+
+or
+
+```bash
+python train_reg.py
+```
+
+> **Note:** When the weight of the geometric observation term is below **3.0**, we recommend using `train_reg.py` to achieve better performance.
+
+---
 
 ## ⚗️ Testing
 
 ### 3.1 DTU
 
-For DTU testing, we use model trained on DTU training dataset. You can basically download our [DTU pretrained model](https://drive.google.com/file/d/147_UbjE87E-HB9sZ5yLDbckynH825nJd/view?usp=sharing) and put it into `checkpoints/dtu/geomvsnet/`. And perform *depth map estimation, point cloud fusion, and result evaluation* according to the following steps.
-1. Run `bash scripts/dtu/test_dtu.sh` for depth map estimation. The results will be stored in `outputs/dtu/[THISNAME]/`, each scan folder holding `depth_est` and `confidence`, etc.
-    - Use `outputs/visual.ipynb` for depth map visualization.
-2. Run `bash scripts/dtu/fusion_dtu.sh` for point cloud fusion. We provide 3 different fusion methods, and we recommend the `open3d` option by default. After fusion, you can get `[FUSION_METHOD]_fusion_plys` under the experiment output folder, point clouds of each testing scan are there.
+For DTU testing, we use models trained on the DTU training dataset. We provide several pre-trained checkpoints corresponding to the models reported in our paper:
 
-    <details>
-    <summary>(Optional) If you want to use the "Gipuma" fusion method.</summary>
+| Checkpoint                       | Model                           | Testing Script          |
+| -------------------------------- | ------------------------------- | ----------------------- |
+| `dtu_mvoco.ckpt`                 | MVOCO-MVSNet                    | `test.py`               |
+| `dtu_mvoco_plus.ckpt`            | MVOCO-MVSNet+                   | `test.py`               |
+| `model_A_paper.ckpt`             | Ablation Model A                | `test_reg.py`           |
+| `model_B_paper.ckpt`             | Ablation Model B                | `test_reg.py`           |
+| `dtu_real_depth_mvoco_plus.ckpt` | Ablation Model S                | `test.py`               |
+| `dtu_Casmvsnet_mvoco.ckpt`       | CasMVSNet integrated with MVOCO | CasMVSNet official code |
 
-    1. Clone the [edited fusibile repo](https://github.com/YoYo000/fusibile).
-    2. Refer to [fusibile configuration blog (Chinese)](https://zhuanlan.zhihu.com/p/460212787) for building details.
-    3. Create a new python2.7 conda env.
-        ```bash
-        conda create -n fusibile python=2.7
-        conda install scipy matplotlib
-        conda install tensorflow==1.14.0
-        conda install -c https://conda.anaconda.org/menpo opencv
-        ```
-    4. Use the `fusibile` conda environment for `gipuma` fusion method.
+Please specify the corresponding checkpoint in the configuration file before testing.
 
-    </details>
+The testing process consists of **depth map estimation, point cloud fusion, and result evaluation**, as described below.
 
-3. Download the [ObsMask](http://roboimagedata2.compute.dtu.dk/data/MVS/SampleSet.zip) and [Points](http://roboimagedata2.compute.dtu.dk/data/MVS/Points.zip) of DTU GT point clouds from the official website and organize them as:
+#### Step 1: Depth Map Estimation
 
-    ```
-    dtu-evaluation/
-    ├── ObsMask
-    └── Points
-    ```
+Run:
 
-4. Setup `Matlab` in command line mode, and run `bash scripts/dtu/matlab_quan_dtu.sh`. You can adjust the `num_at_once` config according to your machine's CPU and memory ceiling. After quantitative evaluation, you will get `[FUSION_METHOD]_quantitative/` and `[THISNAME].log` just store the quantitative results.
+```bash
+bash scripts/dtu/test_dtu.sh
+```
+
+The estimated depth maps and confidence maps will be stored in:
+
+```text
+outputs/dtu/[THISNAME]/
+```
+
+Each scan folder contains files such as:
+
+```text
+depth_est/
+confidence/
+...
+```
+
+#### Step 2: Point Cloud Fusion
+
+Run:
+
+```bash
+bash scripts/dtu/fusion_dtu.sh
+```
+
+We provide three different point cloud fusion methods. The `open3d` option is recommended by default.
+
+After fusion, the resulting point clouds will be stored in:
+
+```text
+[FUSION_METHOD]_fusion_plys/
+```
+
+under the corresponding experiment output directory. The point cloud of each testing scan is stored in this directory.
+
+<details>
+<summary>(Optional) Using the "Gipuma" fusion method</summary>
+
+1. Clone the [edited Fusibile repository](https://github.com/YoYo000/fusibile).
+
+2. Refer to the [Fusibile configuration guide (Chinese)](https://zhuanlan.zhihu.com/p/460212787) for compilation details.
+
+3. Create a Python 2.7 conda environment:
+
+```bash
+conda create -n fusibile python=2.7
+conda install scipy matplotlib
+conda install tensorflow==1.14.0
+conda install -c https://conda.anaconda.org/menpo opencv
+```
+
+4. Activate the `fusibile` environment when using the `gipuma` fusion method.
+
+</details>
+
+#### Step 3: DTU Evaluation
+
+Download the DTU ground-truth point clouds, including [ObsMask](http://roboimagedata2.compute.dtu.dk/data/MVS/SampleSet.zip) and [Points](http://roboimagedata2.compute.dtu.dk/data/MVS/Points.zip), from the official website.
+
+Organize the evaluation data as follows:
+
+```text
+dtu-evaluation/
+├── ObsMask
+└── Points
+```
+
+> **Note:** The checkpoint `dtu_Casmvsnet_mvoco.ckpt` is obtained by integrating MVOCO into the original CasMVSNet framework. To evaluate this checkpoint, please download the official [CasMVSNet](https://github.com/alibaba/cascade-stereo/tree/master/CasMVSNet) source code and follow its original testing pipeline.
 
 ### 3.2 Tanks and Temples
 
-For testing on [Tanks and Temples benchmark](https://www.tanksandtemples.org/leaderboard/), you can use any of the following configurations:
-- Only train on DTU training dataset.
-- Only train on BlendedMVS dataset.
-- Pretrained on DTU training dataset and finetune on BlendedMVS dataset. (Recommend)
+For testing on the [Tanks and Temples benchmark](https://www.tanksandtemples.org/leaderboard/), you can use any of the following training configurations:
 
-After your personal training, also follow these steps:
-1. Run `bash scripts/tnt/test_tnt.sh` for depth map estimation. The results will be stored in `outputs/[TRAINING_DATASET]/[THISNAME]/`.
-    - Use `outputs/visual.ipynb` for depth map visualization.
-2. Run `bash scripts/tnt/fusion_tnt.sh` for point cloud fusion. We provide the popular dynamic fusion strategy, and you can tune the fusion threshold in `fusions/tnt/dypcd.py`.
-3. Follow the *Upload Instructions* on the [T&T official website](https://www.tanksandtemples.org/submit/) to make online submissions.
+* Train only on the DTU training dataset.
+* Train only on the BlendedMVS dataset.
+* Pre-train on the DTU training dataset and fine-tune on the BlendedMVS dataset. **(Recommended)**
+
+After training, follow the steps below.
+
+#### Step 1: Depth Map Estimation
+
+Run:
+
+```bash
+bash scripts/tnt/test_tnt.sh
+```
+
+The estimated results will be stored in:
+
+```text
+outputs/[TRAINING_DATASET]/[THISNAME]/
+```
+
+You can use `outputs/visual.ipynb` for depth map visualization.
+
+#### Step 2: Point Cloud Fusion
+
+Run:
+
+```bash
+bash scripts/tnt/fusion_tnt.sh
+```
+
+We provide the commonly used dynamic fusion strategy. The fusion threshold can be adjusted in:
+
+```text
+fusions/tnt/dypcd.py
+```
+
+#### Step 3: Online Evaluation
+
+Follow the *Upload Instructions* provided on the [official Tanks and Temples website](https://www.tanksandtemples.org/submit/) to submit the reconstructed point clouds for online evaluation.
 
 ### 3.3 Custom Data (TODO)
 
-GeoMVSNet can reconstruct on custom data. At present, you can refer to [MVSNet](https://github.com/YoYo000/MVSNet#file-formats) to organize your data, and refer to the same steps as above for *depth estimation* and *point cloud fusion*.
-<p align="center"><strong>🚀 Coming soon!</strong></p>
+**MVOCO-MVSNet** can also be used for reconstruction on custom datasets.
+
+Currently, you can refer to [MVSNet](https://github.com/YoYo000/MVSNet#file-formats) for the required data organization and follow the same procedures described above for **depth estimation** and **point cloud fusion**.
+
+---
 
 ## 💡 Results
 
-Our results on DTU and Tanks and Temples Dataset are listed in the tables.
+Our quantitative results on the DTU and Tanks and Temples datasets are shown below.
 
-| DTU Dataset | Acc. ↓ | Comp. ↓ | Overall ↓ |
-| ----------- | ------ | ------- | --------- |
-| MVOCO-MVSNet  | 0.344  |  0.243  |   0.294   |
-| MVOCO-MVSNet+ | 0.328  |  0.244  |   0.286   |
+### DTU Dataset
 
-| T&T (Intermediate)| Mean ↑ | Family | Francis | Horse | Lighthouse | M60   | Panther | Playground | Train |
-| ------------------| ------ | ------ | ------- | ----- | ---------- | ----- | ------- | ---------- | ----- |
-| MVOCO-MVSNet+       | 65.30  | 82.29  | 68.37   | 55.61 |    67.34   | 64.03 |  63.47  |    61.52   | 59.78 |
+| Method        | Acc. ↓ | Comp. ↓ | Overall ↓ |
+| ------------- | ------ | ------- | --------- |
+| MVOCO-MVSNet  | 0.344  | 0.243   | 0.294     |
+| MVOCO-MVSNet+ | 0.328  | 0.244   | 0.286     |
 
-| T&T (Advanced) | Mean ↑ | Auditorium | Ballroom | Courtroom | Museum | Palace | Temple |
-| -------------- | ------ | ---------- | -------- | --------- | ------ | ------ | ------ |
-| MVOCO-MVSNet+    | 41.84  | 30.96      | 46.02    | 40.30     | 51.98  | 35.97  | 45.80  |
+### Tanks and Temples — Intermediate Set
 
+| Method        | Mean ↑ | Family | Francis | Horse | Lighthouse | M60   | Panther | Playground | Train |
+| ------------- | ------ | ------ | ------- | ----- | ---------- | ----- | ------- | ---------- | ----- |
+| MVOCO-MVSNet+ | 65.30  | 82.29  | 68.37   | 55.61 | 67.34      | 64.03 | 63.47   | 61.52      | 59.78 |
 
-## Visualization Results on the Tanks and Temples Dataset
+### Tanks and Temples — Advanced Set
 
-### Qualitative Results on Intermediate Set
+| Method        | Mean ↑ | Auditorium | Ballroom | Courtroom | Museum | Palace | Temple |
+| ------------- | ------ | ---------- | -------- | --------- | ------ | ------ | ------ |
+| MVOCO-MVSNet+ | 41.84  | 30.96      | 46.02    | 40.30     | 51.98  | 35.97  | 45.80  |
+
+---
+
+## 🖼️ Visualization Results on the Tanks and Temples Dataset
+
+### Qualitative Results on the Intermediate Set
+
 <p align="center">
   <img src="tnt_intermediate_visualization.png" width="900">
   <br>
-  <em>Figure 1: MVOCO-MVSNet+ reconstruction results on the Intermediate Set of Tanks and Temples.</em>
+  <em>Figure 1: MVOCO-MVSNet+ reconstruction results on the Intermediate Set of the Tanks and Temples dataset.</em>
 </p>
 
-### Qualitative Results on Advanced Set
+### Qualitative Results on the Advanced Set
+
 <p align="center">
   <img src="tnt_advanced_visualization.png" width="900">
   <br>
-  <em>Figure 2: MVOCO-MVSNet+ reconstruction results on the Advanced set of Tanks and Temples.</em>
+  <em>Figure 2: MVOCO-MVSNet+ reconstruction results on the Advanced Set of the Tanks and Temples dataset.</em>
 </p>
 
-## 👩‍ Acknowledgements
+---
 
-Thanks to [MVSNet](https://github.com/YoYo000/MVSNet), [MVSNet_pytorch](https://github.com/xy-guo/MVSNet_pytorch), [CasMVSNet](https://github.com/alibaba/cascade-stereo/tree/master/CasMVSNet), [GeoMVSNet](https://github.com/doubleZ0108/GeoMVSNet), [ET-MVSNet](https://github.com/TQTQliu/ET-MVSNet), and [CL-MVSNet](https://KaiqiangXiong.github.io/CL-MVSNet)
+## 👩 Acknowledgements
+
+We would like to thank the authors of the following open-source projects for their valuable contributions:
+
+* [MVSNet](https://github.com/YoYo000/MVSNet)
+* [MVSNet_pytorch](https://github.com/xy-guo/MVSNet_pytorch)
+* [CasMVSNet](https://github.com/alibaba/cascade-stereo/tree/master/CasMVSNet)
+* [ET-MVSNet](https://github.com/TQTQliu/ET-MVSNet)
+* [CL-MVSNet](https://KaiqiangXiong.github.io/CL-MVSNet)
