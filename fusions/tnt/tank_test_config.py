@@ -89,7 +89,6 @@ tank_cfg.Museum.conf = [5, 5, 10, 20]
 tank_cfg.Palace.conf = [2, 5, 8, 10]
 tank_cfg.Temple.conf = [2, 5, 8, 10]
 
-# 2026.9.30
 # tank_cfg.Family.conf = [5, 5, 10, 10]
 # tank_cfg.Francis.conf = [5, 5, 10, 10]
 # tank_cfg.Horse.conf = [0, 5, 10, 10]
@@ -105,7 +104,6 @@ tank_cfg.Temple.conf = [2, 5, 8, 10]
 # tank_cfg.Palace.conf = [0, 5, 10, 15]
 # tank_cfg.Temple.conf = [0, 5, 10, 10]
 
-# 2026.9.26 第一次
 # tank_cfg.Family.conf = [5, 5, 10, 10]
 # tank_cfg.Francis.conf = [5, 5, 10, 10]
 # tank_cfg.Horse.conf = [5, 5, 10, 10]
