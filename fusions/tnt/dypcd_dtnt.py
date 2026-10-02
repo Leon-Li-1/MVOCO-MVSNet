@@ -42,25 +42,13 @@ args = parser.parse_args()
 if args.split == 'intermediate':
     s_all = {'Family':2, 'Francis':7, 'Horse':2, 'Lighthouse':5, 'M60':4, 'Panther':3, 'Playground':5, 'Train':3}
     # conf_all = {'Family':0.35, 'Francis':0.4, 'Horse':0.2, 'Lighthouse':0.6, 'M60':0.4, 'Panther':0.3, 'Playground':0.4, 'Train':0.4}
-    dist_all = {'Family':1/12, 'Francis':1/8, 'Horse':1/4, 'Lighthouse':1/12, 'M60':1/10, 'Panther':1/10, 'Playground':1/10, 'Train':1/10}
+    dist_all = {'Family':1/12, 'Francis':1/8, 'Horse':1/4, 'Lighthouse':1/8, 'M60':1/8, 'Panther':1/8, 'Playground':1/10, 'Train':1/8}
     rel_diff_all = {'Family':1/1600, 'Francis':1/1600, 'Horse':1/1000, 'Lighthouse':1/1600, 'M60':1/1600, 'Panther':1/1600, 'Playground':1/1600, 'Train':1/1600}
 elif args.split == 'advanced':
     s_all = {'Auditorium':1, 'Ballroom':2, 'Courtroom':1, 'Museum':2, 'Palace':2, 'Temple':1}
     # conf_all = {'Auditorium':0.1, 'Ballroom':0.05, 'Courtroom':0.2, 'Museum':0.25, 'Palace':0.15, 'Temple':0.15}
     dist_all = {'Auditorium':1/4, 'Ballroom':1/4, 'Courtroom':1/5, 'Museum':1/4, 'Palace':1/4, 'Temple':1/4}
     rel_diff_all = {'Auditorium':1/1100, 'Ballroom':1/1400, 'Courtroom':1/1500, 'Museum':1/1400, 'Palace':1/1400, 'Temple':1/1500}
-
-
-# if args.split == 'intermediate':
-#     s_all = {'Family':2, 'Francis':7, 'Horse':2, 'Lighthouse':5, 'M60':4, 'Panther':3, 'Playground':5, 'Train':3}
-#     # conf_all = {'Family':0.35, 'Francis':0.4, 'Horse':0.2, 'Lighthouse':0.6, 'M60':0.4, 'Panther':0.3, 'Playground':0.4, 'Train':0.4}
-#     dist_all = {'Family':1/12, 'Francis':1/8, 'Horse':1/4, 'Lighthouse':1/8, 'M60':1/8, 'Panther':1/8, 'Playground':1/8, 'Train':1/8}
-#     rel_diff_all = {'Family':1/1600, 'Francis':1/1600, 'Horse':1/1000, 'Lighthouse':1/1600, 'M60':1/1600, 'Panther':1/1600, 'Playground':1/1600, 'Train':1/1600}
-# elif args.split == 'advanced':
-#     s_all = {'Auditorium':1, 'Ballroom':2, 'Courtroom':1, 'Museum':1, 'Palace':1, 'Temple':1}
-#     # conf_all = {'Auditorium':0.1, 'Ballroom':0.05, 'Courtroom':0.2, 'Museum':0.25, 'Palace':0.15, 'Temple':0.15}
-#     dist_all = {'Auditorium':1/4, 'Ballroom':1/4, 'Courtroom':1/5, 'Museum':1/5, 'Palace':1/5, 'Temple':1/4}
-#     rel_diff_all = {'Auditorium':1/1100, 'Ballroom':1/1400, 'Courtroom':1/1500, 'Museum':1/1500, 'Palace':1/1500, 'Temple':1/1500}
 
 # if args.split == 'intermediate':
 #     s_all = {'Family':2, 'Francis':7, 'Horse':2, 'Lighthouse':5, 'M60':4, 'Panther':3, 'Playground':5, 'Train':3}
