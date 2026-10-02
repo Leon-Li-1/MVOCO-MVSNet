@@ -297,6 +297,10 @@ bash scripts/tnt/test_tnt.sh
 
 The estimated results will be stored in:
 
+```bash
+python ./fusions/tnt/dypcd_dtnt.py   [**or other fusions method ./fusions/tnt/*******.py]
+```
+
 ```text
 outputs/[TRAINING_DATASET]/[THISNAME]/
 ```
