@@ -51,7 +51,7 @@ elif args.split == 'advanced':
     rel_diff_all = {'Auditorium':1/1100, 'Ballroom':1/1400, 'Courtroom':1/1500, 'Museum':1/1400, 'Palace':1/1400, 'Temple':1/1500}
 
 
-# if args.split == 'intermediate': # 2026.9.30  比较OK
+# if args.split == 'intermediate':
 #     s_all = {'Family':2, 'Francis':7, 'Horse':2, 'Lighthouse':5, 'M60':4, 'Panther':3, 'Playground':5, 'Train':3}
 #     # conf_all = {'Family':0.35, 'Francis':0.4, 'Horse':0.2, 'Lighthouse':0.6, 'M60':0.4, 'Panther':0.3, 'Playground':0.4, 'Train':0.4}
 #     dist_all = {'Family':1/12, 'Francis':1/8, 'Horse':1/4, 'Lighthouse':1/8, 'M60':1/8, 'Panther':1/8, 'Playground':1/8, 'Train':1/8}
@@ -62,7 +62,7 @@ elif args.split == 'advanced':
 #     dist_all = {'Auditorium':1/4, 'Ballroom':1/4, 'Courtroom':1/5, 'Museum':1/5, 'Palace':1/5, 'Temple':1/4}
 #     rel_diff_all = {'Auditorium':1/1100, 'Ballroom':1/1400, 'Courtroom':1/1500, 'Museum':1/1500, 'Palace':1/1500, 'Temple':1/1500}
 
-# if args.split == 'intermediate': # 2026.9.26  比较OK
+# if args.split == 'intermediate':
 #     s_all = {'Family':2, 'Francis':7, 'Horse':2, 'Lighthouse':5, 'M60':4, 'Panther':3, 'Playground':5, 'Train':3}
 #     # conf_all = {'Family':0.35, 'Francis':0.4, 'Horse':0.2, 'Lighthouse':0.6, 'M60':0.4, 'Panther':0.3, 'Playground':0.4, 'Train':0.4}
 #     dist_all = {'Family':1/12, 'Francis':1/8, 'Horse':1/4, 'Lighthouse':1/8, 'M60':1/8, 'Panther':1/8, 'Playground':1/8, 'Train':1/8}
