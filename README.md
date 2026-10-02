@@ -297,15 +297,9 @@ bash scripts/tnt/test_tnt.sh
 
 The estimated results will be stored in:
 
-```bash
-python ./fusions/tnt/dypcd_dtnt.py   [**or other fusions method ./fusions/tnt/*******.py]
-```
-
 ```text
 outputs/[TRAINING_DATASET]/[THISNAME]/
 ```
-
-You can use `outputs/visual.ipynb` for depth map visualization.
 
 #### Step 2: Point Cloud Fusion
 
@@ -314,11 +308,16 @@ Run:
 ```bash
 bash scripts/tnt/fusion_tnt.sh
 ```
+or
+
+```bash
+python ./fusions/tnt/dypcd_dtnt.py   [**or other fusions method ./fusions/tnt/*******.py]
+```
 
 We provide the commonly used dynamic fusion strategy. The fusion threshold can be adjusted in:
 
 ```text
-fusions/tnt/dypcd.py
+fusions/tnt/*********.py
 ```
 
 #### Step 3: Online Evaluation
