@@ -190,14 +190,14 @@ python train_reg.py
 
 For DTU testing, we use models trained on the DTU training dataset. We provide several pre-trained checkpoints corresponding to the models reported in our paper:
 
-| Checkpoint                       | Model                           | Testing Script          |
-| -------------------------------- | ------------------------------- | ----------------------- |
-| `dtu_mvoco.ckpt`                 | MVOCO-MVSNet                    | `test.py`               |
-| `dtu_mvoco_plus.ckpt`            | MVOCO-MVSNet+                   | `test.py`               |
-| `model_A_paper.ckpt`             | Ablation Model A                | `test_reg.py`           |
-| `model_B_paper.ckpt`             | Ablation Model B                | `test_reg.py`           |
-| `dtu_real_depth_mvoco_plus.ckpt` | Ablation Model S                | `test.py`               |
-| `dtu_Casmvsnet_mvoco.ckpt`       | CasMVSNet integrated with MVOCO | CasMVSNet official code |
+| Checkpoint                       | Model                           | Testing Script          | fusions—DTU                      |
+| -------------------------------- | ------------------------------- | ----------------------- | ---------------------------------|
+| `dtu_mvoco.ckpt`                 | MVOCO-MVSNet                    | `test.py`               | `fusions/dtu/mvoco.py`           |
+| `dtu_mvoco_plus.ckpt`            | MVOCO-MVSNet+                   | `test.py`               | `fusions/dtu/mvocoplus.py`       |
+| `model_A_paper.ckpt`             | Ablation Model A                | `test_reg.py`           | `fusions/dtu/mvoco_modelA.py`    |
+| `model_B_paper.ckpt`             | Ablation Model B                | `test_reg.py`           | `fusions/dtu/mvoco_modelB.py`    |
+| `dtu_real_depth_mvoco_plus.ckpt` | Ablation Model S                | `test.py`               | `fusions/dtu/mvoco_modelS.py`    |
+| `dtu_Casmvsnet_mvoco.ckpt`       | CasMVSNet integrated with MVOCO | CasMVSNet official code | `fusions/dtu/mvoco_casmvsnet.py` |
 
 Please specify the corresponding checkpoint in the configuration file before testing.
 
