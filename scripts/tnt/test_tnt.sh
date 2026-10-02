@@ -10,7 +10,7 @@ TNT_OUT_DIR="./outputs/tnt/"$THISNAME
 
 # Intermediate
 CUDA_VISIBLE_DEVICES=0 python3 test.py ${@} \
-    --which_dataset="tnt" --loadckpt=$CKPT_FILE --batch_size=1 \
+    --which_dataset="tnt" --hypo_plane_num_stages="16,8,4,4" --loadckpt=$CKPT_FILE --batch_size=1 \
     --outdir=$TNT_OUT_DIR --logdir=$LOG_DIR --nolog \
     --testpath=$TNT_ROOT --testlist="datasets/lists/tnt/intermediate.txt" --split="intermediate" \
     \
@@ -18,7 +18,7 @@ CUDA_VISIBLE_DEVICES=0 python3 test.py ${@} \
 
 # Advanced
 CUDA_VISIBLE_DEVICES=0 python3 test.py ${@} \
-    --which_dataset="tnt" --loadckpt=$CKPT_FILE --batch_size=1 \
+    --which_dataset="tnt" --hypo_plane_num_stages="16,8,4,4" --loadckpt=$CKPT_FILE --batch_size=1 \
     --outdir=$TNT_OUT_DIR --logdir=$LOG_DIR --nolog \
     --testpath=$TNT_ROOT --testlist="datasets/lists/tnt/advanced.txt" --split="advanced" \
     \
