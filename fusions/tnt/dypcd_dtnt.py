@@ -40,7 +40,7 @@ parser.add_argument('--rel_diff_base', type=float, default=1 / 1300)
 args = parser.parse_args()
 
 if args.split == 'intermediate':
-    s_all = {'Family':2, 'Francis':7, 'Horse':2, 'Lighthouse':5, 'M60':4, 'Panther':3, 'Playground':5, 'Train':3}
+    s_all = {'Family':2, 'Francis':7, 'Horse':2, 'Lighthouse':3, 'M60':3, 'Panther':2, 'Playground':5, 'Train':3}
     # conf_all = {'Family':0.35, 'Francis':0.4, 'Horse':0.2, 'Lighthouse':0.6, 'M60':0.4, 'Panther':0.3, 'Playground':0.4, 'Train':0.4}
     dist_all = {'Family':1/12, 'Francis':1/8, 'Horse':1/4, 'Lighthouse':1/8, 'M60':1/8, 'Panther':1/8, 'Playground':1/10, 'Train':1/8}
     rel_diff_all = {'Family':1/1600, 'Francis':1/1600, 'Horse':1/1000, 'Lighthouse':1/1600, 'M60':1/1600, 'Panther':1/1600, 'Playground':1/1600, 'Train':1/1600}
