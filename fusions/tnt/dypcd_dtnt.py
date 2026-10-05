@@ -47,8 +47,8 @@ if args.split == 'intermediate':
 elif args.split == 'advanced':
     s_all = {'Auditorium':1, 'Ballroom':2, 'Courtroom':1, 'Museum':2, 'Palace':2, 'Temple':1}
     # conf_all = {'Auditorium':0.1, 'Ballroom':0.05, 'Courtroom':0.2, 'Museum':0.25, 'Palace':0.15, 'Temple':0.15}
-    dist_all = {'Auditorium':1/4, 'Ballroom':1/4, 'Courtroom':1/5, 'Museum':1/4, 'Palace':1/4, 'Temple':1/4}
-    rel_diff_all = {'Auditorium':1/1100, 'Ballroom':1/1400, 'Courtroom':1/1500, 'Museum':1/1400, 'Palace':1/1400, 'Temple':1/1500}
+    dist_all = {'Auditorium':1/4, 'Ballroom':1/4, 'Courtroom':1/4, 'Museum':1/4, 'Palace':1/4, 'Temple':1/4}
+    rel_diff_all = {'Auditorium':1/1100, 'Ballroom':1/1400, 'Courtroom':1/1400, 'Museum':1/1400, 'Palace':1/1400, 'Temple':1/1500}
 
 # if args.split == 'intermediate':
 #     s_all = {'Family':2, 'Francis':7, 'Horse':2, 'Lighthouse':5, 'M60':4, 'Panther':3, 'Playground':5, 'Train':3}
