@@ -85,7 +85,7 @@ tank_cfg.Train.conf = [20, 30, 30, 35]
 tank_cfg.Auditorium.conf = [10, 10, 10, 10]
 tank_cfg.Ballroom.conf = [5, 10, 10, 15]
 tank_cfg.Courtroom.conf = [15, 10, 15, 20]
-tank_cfg.Museum.conf = [2, 5, 8, 10]
+tank_cfg.Museum.conf = [0, 0, 0, 25]
 tank_cfg.Palace.conf = [5, 5, 10, 10]
 tank_cfg.Temple.conf = [0, 5, 10, 10]
 
