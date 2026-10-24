@@ -9,7 +9,7 @@ if [ ! -d $LOG_DIR ]; then
 fi
 
 CUDA_VISIBLE_DEVICES=0 python3 train.py ${@} \
-    --which_dataset="dtu" --which_module="mvoco" --epochs=16 --logdir=$LOG_DIR \
+    --which_dataset="dtu" --which_module="mvoco" --hypo_plane_num_stages="8,8,4,4" --epochs=16 --logdir=$LOG_DIR \
     --trainpath=$DTU_TRAIN_ROOT --testpath=$DTU_TRAIN_ROOT \
     --trainlist="datasets/lists/dtu/train.txt" --testlist="datasets/lists/dtu/test.txt" \
     \
