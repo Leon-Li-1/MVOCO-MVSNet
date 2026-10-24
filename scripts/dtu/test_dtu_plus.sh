@@ -9,7 +9,7 @@ DTU_CKPT_FILE=$LOG_DIR$BESTEPOCH".ckpt"
 DTU_OUT_DIR="./outputs/dtu/"$THISNAME
 
 CUDA_VISIBLE_DEVICES=0 python3 test.py ${@} \
-    --which_dataset="dtu" --which_module="mvoco_plus" --loadckpt=$DTU_CKPT_FILE --batch_size=1 \
+    --which_dataset="dtu" --which_module="mvoco_plus" --hypo_plane_num_stages="8,8,4,4" --loadckpt=$DTU_CKPT_FILE --batch_size=1 \
     --outdir=$DTU_OUT_DIR --logdir=$LOG_DIR --nolog \
     --testpath=$DTU_TEST_ROOT --testlist="datasets/lists/dtu/test.txt" \
     \
