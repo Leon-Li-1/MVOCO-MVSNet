@@ -13,5 +13,5 @@ CUDA_VISIBLE_DEVICES=0 python3 train.py ${@} \
     --trainpath=$DTU_TRAIN_ROOT --testpath=$DTU_TRAIN_ROOT \
     --trainlist="datasets/lists/dtu/train.txt" --testlist="datasets/lists/dtu/test.txt" \
     \
-    --data_scale="mid" --n_views="5" --batch_size=4 --lr=0.002 --robust_train \
+    --data_scale="mid" --n_views="5" --batch_size=2 --lr=0.001 --robust_train \
     --lrepochs="6,10,12,14:2"
